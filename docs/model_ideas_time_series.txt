@@ -1,0 +1,29 @@
+Top time series forecasting models include
+classical statistical methods (ARIMA, ETS), machine learning algorithms (XGBoost, LightGBM),
+ and deep learning architectures (N-BEATS, Temporal Fusion Transformer). 
+ Choice depends on data characteristics: ARIMA/Prophet suit univariate/seasonal data, 
+ while DeepAR/LSTM/N-BEATS excel at complex, high-frequency, multivariate datasets. 
+
+    Statistical Models (Best for simple/small data):
+        ARIMA/SARIMA: The standard for stationary data with linear patterns.
+        ETS (Exponential Smoothing): Excellent for trend and seasonal data.
+        Prophet: Robust for business forecasting with multiple seasonalities (daily, weekly, yearly) 
+        and holiday effects.
+    Machine Learning Models (Best for structured, multivariate data):
+        LightGBM / XGBoost: Fast, accurate, and suitable for tabular time series with complex nonlinear patterns.
+        Random Forest: Effective for capturing complex non-linear relationships without heavy preprocessing.
+    Deep Learning Models (Best for high-volume, long-term sequences):
+        N-BEATS: Highly accurate for long-horizon forecasting, specifically designed for non-linearities.
+        Temporal Fusion Transformer (TFT): Google's model for interpreting complex, multi-horizon forecasts.
+        DeepAR: Amazon's RNN-based probabilistic model for scaling to thousands of related time series.
+        LSTM: Robust for long-term temporal dependencies.
+    Emerging Models:
+        TimeSNet: Specialized for long-range dependency modeling across multiple scales.
+        TSMixer: Lightweight MLP-based model for large-scale, high-frequency data. 
+
+Selection Guidance:
+
+    Small Data/Short History: Use ARIMA, ETS, or Prophet.
+    Large Dataset/High Frequency: Use LightGBM, LSTM, or N-BEATS.
+    Long-Term Horizon: Use N-BEATS, TimesNet, or TFT.
+    Multivariate with Complex Trends: Use TFT or DeepAR. 
