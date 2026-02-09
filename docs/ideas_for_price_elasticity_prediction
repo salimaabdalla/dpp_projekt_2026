@@ -1,0 +1,12 @@
+Ideas for methods:
+
+Newton's Divided Difference Interpolation, Lagrange Interpolation, And Least Squares Curve Fitting Techniques
+(https://www.researchgate.net/publication/395594046_Business_Demand_Forecasting_Using_Numerical_Interpolation_and_Curve_Fitting)
+
+Polynom-Interpolation wie B-Splines
+
+Übersicht https://www.ni.com/docs/de-DE/bundle/labview-api-ref/page/menus/categories/mathematics/aninterpextrap-mnu.html?srsltid=AfmBOorgvdBgvw66xiR29iMR0Mh1GaJhQRP4R7bYI2EcaYaTJTiNKqBa
+
+time series Bezug: https://www.mdpi.com/2073-4441/9/10/796
+Generalized Short time Fourier Transformation as Wavelet Transforms, in Python as https://pywavelets.readthedocs.io/en/latest/
+
