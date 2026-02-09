@@ -37,10 +37,10 @@ Further ideas:
 
 
 Picked:
-    ARIMA
-    XGBoost
-    Random Forest
-    Neural Network
-    Support Vector Machine
+    ARIMA - SA
+    XGBoost - SA
+    Random Forest - JL
+    Neural Network - JL
+    Support Vector Machine - JL
 
 
