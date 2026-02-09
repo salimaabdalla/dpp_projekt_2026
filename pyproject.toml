@@ -13,6 +13,7 @@ dependencies = [
     "duckdb>=1.4.1",
     "scikit-learn>=1.7.2",
     "ipywidgets>=8.1.8",
+    "plotly>=6.5.2",
 ]
 
 [build-system]
