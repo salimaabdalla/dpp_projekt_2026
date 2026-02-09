@@ -27,3 +27,20 @@ Selection Guidance:
     Large Dataset/High Frequency: Use LightGBM, LSTM, or N-BEATS.
     Long-Term Horizon: Use N-BEATS, TimesNet, or TFT.
     Multivariate with Complex Trends: Use TFT or DeepAR. 
+
+
+Further ideas:
+    Support Vector Machine with few columns
+    Neural Network
+
+
+
+
+Picked:
+    ARIMA
+    XGBoost
+    Random Forest
+    Neural Network
+    Support Vector Machine
+
+
