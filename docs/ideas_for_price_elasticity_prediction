@@ -10,3 +10,22 @@ Polynom-Interpolation wie B-Splines
 time series Bezug: https://www.mdpi.com/2073-4441/9/10/796
 Generalized Short time Fourier Transformation as Wavelet Transforms, in Python as https://pywavelets.readthedocs.io/en/latest/
 
+
+
+
+
+# first simple attempt:
+Punktelastizität = delta_t0_t1(Nachfragemenge) / delta_t0_t1(Preis)
+        mit Nachfragemenge = Umsatz (MonBericht)/Preis (MonProd)
+        und Preis = Wert der zum Absatz bestimmten Schokolade (MonProd)
+
+
+# second try after visualization:
+Punktelastizität = delta_t0_t1(Nachfragemenge) / delta_t0_t1(Preis)
+        mit Nachfragemenge = Umsatz (MonBericht)
+        und Preis = Wert der zum Absatz bestimmten Schokolade (MonProd)
+
+
+
+
+
