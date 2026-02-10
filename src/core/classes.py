@@ -11,15 +11,17 @@ from imblearn.pipeline import Pipeline
 class DataImputation(TransformerMixin, BaseEstimator):
     """Imputs missing values. """
     
-    def __init__(self):
+    def __init__(self, excluded_columns):
         """Initalizes the attributes."""
         self.features = []
         self.num_cols = []
         self.dict_num = {}
+        self.excluded_columns = excluded_columns
 
     def fit(self, X, y=None):
-  
-        self.num_cols = list(X.select_dtypes(exclude='object').columns)
+        help_list = list(X.select_dtypes(exclude='object').columns)
+        self.num_cols = [x for x in help_list if x not in self.excluded_columns]
+
         self.dict_num = {col: X[col].median() for col in self.num_cols}
         return self
     
@@ -63,7 +65,8 @@ class FeatureEngineer(TransformerMixin, BaseEstimator):
             lags = self.dict_lag[col]
             for lag in lags:
                 if lag > 0:
-                    df[col + '_lag_by_' + str(lag)] = X.loc[:, col ].shift(lag)
+                    df[col + '_lag_by_' + str(lag)] = X.loc[:, col ].shift(lag, fill_value = X[col].tolist()[0])
+
                 else:
                     df[col ] = X.loc[:, col ]
 
