@@ -33,12 +33,14 @@ uv sync
 ### Ausführung
 
 Notebooks in dieser Reihenfolge ausführen:
-1. notebooks/01_preprocessing.ipynb
+1. notebooks/01_preprocessing_monthly_data.ipynb
 2. notebooks/02_shareprice_daily_to_monthly.ipynb
-3. notebooks/03_combining_data.ipynb
+3. notebooks/03_combining_all_data.ipynb
 4. notebooks/04_exploration.ipynb
-5. notebooks/05_first_prediction.ipynb
-6. notebooks/06_prediction_with_monthly_new_data.ipynb
-
+5. notebooks/05_preprocessing.ipynb
+6. notebooks/06_first_prediction.ipynb
+7. notebooks/07_prediction_with_monthly_new_data.ipynb
+8. notebooks/08_estimation_price_elasticity.ipynb
+9. notebooks/09_models_shareprices_stepwise.ipynb
 
 
