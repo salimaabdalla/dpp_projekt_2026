@@ -42,5 +42,8 @@ Notebooks in dieser Reihenfolge ausführen:
 7. notebooks/07_prediction_with_monthly_new_data.ipynb
 8. notebooks/08_estimation_price_elasticity.ipynb
 9. notebooks/09_models_shareprices_stepwise.ipynb
+10.notebooks/10_ARIMAX_parameter_selection.ipynb
+11.notebooks/11_ARIMAX_monthly_updated_prediction.ipynb
+
 
 
