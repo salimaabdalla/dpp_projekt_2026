@@ -1,7 +1,7 @@
 [project]
-name = "dpp-template"
+name = "chocolate_project"
 version = "0.1.0"
-description = "Add your description here"
+description = "Model the price elasticity of chocolate products in Germany"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
@@ -17,6 +17,7 @@ dependencies = [
     "statsmodels>=0.14.6",
     "imblearn>=0.0",
     "xgboost>=3.2.0",
+    "tensorflow>=2.20.0",
 ]
 
 [build-system]

@@ -1,38 +1,43 @@
 # ☕ Pricing of chocolate and coffee 🍫
 
-> Using share prices and statistics from the goverment of Germany we want to predict the prices of chocolate and tea. 
+> Using share prices and statistics from the goverment of Germany we want to predict the prices of chocolate and coffee. 
 
-## 📊 Projektübersicht
+## 📊 Project overview
 
-**Problemstellung:** 
-<!-- Beschreibe das Problem, das du lösen möchtest -->
+**Problem statement:** 
+Pricing of chocolate products increased in the last years. We use chocolate related data like global chocolate and coffee future prices, share prices from companies producing chocolate products like Lindt and Mondelez to model the price elasticity of chocolate procuts. 
 
-**Ziel:** 
-<!-- Was ist das Hauptziel deines Projekts? -->
+**Objective:** 
+Our target, the price elasticity, is calculated using data from the goverment of Germany. The formula is the following: change of demand / change of price.
 
-**Methoden:** 
+**Methods:** 
 - Time Series Analysis
+- Support Vector Regressor
+- Artificial Neuronal Networks
+- Random Forests
+- ARIMAX
+- XGBoost
 
 
 
 ## Setup
 
-Klone das Repository
+Clone the repository
 ```bash
-# Repository klonen
+# Clone repository
 git clone https://github.com/salimaabdalla/dpp_projekt_2026
 cd dpp_projekt_2026
 ```
 
-Installiere [uv](https://uv.dev) (falls noch nicht installiert) und synchronisiere die Abhängigkeiten
+Install [uv](https://uv.dev) (if not installed already) and synchronise dependencies
 ```bash
-# Dependencies installieren
+# Install dependencies
 uv sync
 ```
 
-### Ausführung
+### Execution
 
-Notebooks in dieser Reihenfolge ausführen:
+Run notebooks in the following order:
 1. notebooks/01_preprocessing_monthly_data.ipynb
 2. notebooks/02_shareprice_daily_to_monthly.ipynb
 3. notebooks/03_combining_all_data.ipynb
@@ -42,8 +47,10 @@ Notebooks in dieser Reihenfolge ausführen:
 7. notebooks/07_prediction_with_monthly_new_data.ipynb
 8. notebooks/08_estimation_price_elasticity.ipynb
 9. notebooks/09_models_shareprices_stepwise.ipynb
-10.notebooks/10_ARIMAX_parameter_selection.ipynb
-11.notebooks/11_ARIMAX_monthly_updated_prediction.ipynb
+10. notebooks/10_ARIMAX_parameter_selection.ipynb
+11. notebooks/11_ARIMAX_monthly_updated_prediction.ipynb
+12. notebooks/12_XGBoost.ipynb
+13. notebooks/13_XGBoost_for_Presentation.ipynb
 
 
 
