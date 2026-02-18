@@ -5,10 +5,10 @@
 ## 📊 Project overview
 
 **Problem:** 
-Prices of chocolate products increased in the last years. We use chocolate related data like global chocolate and coffee future prices, share prices from companies producing chocolate products like Lindt and Mondelez to model the price elasticity of chocolate procuts. 
+Prices of chocolate products increased in the last years. We use data such as global chocolate and coffee future prices, and share prices from companies producing chocolate products, e.g. Lindt and Mondelez, to model the price elasticity of chocolate products. 
 
 **Objective:** 
-Our target, the price elasticity, is calculated using data from the goverment of Germany. The formula is the following: change of demand / change of price.
+Our target is the price elasticity, which we calculate using data from the German goverment according to the following formula: price elasticity = change of demand / change of price.
 
 **Methods:** 
 - Time Series Analysis
