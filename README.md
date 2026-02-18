@@ -1,11 +1,11 @@
 # ☕ Pricing of chocolate and coffee 🍫
 
-> Using share prices and statistics from the goverment of Germany we want to predict the prices of chocolate and coffee. 
+> Using share prices and statistics from the German goverment we predict the prices of chocolate and coffee. 
 
 ## 📊 Project overview
 
-**Problem statement:** 
-Pricing of chocolate products increased in the last years. We use chocolate related data like global chocolate and coffee future prices, share prices from companies producing chocolate products like Lindt and Mondelez to model the price elasticity of chocolate procuts. 
+**Problem:** 
+Prices of chocolate products increased in the last years. We use chocolate related data like global chocolate and coffee future prices, share prices from companies producing chocolate products like Lindt and Mondelez to model the price elasticity of chocolate procuts. 
 
 **Objective:** 
 Our target, the price elasticity, is calculated using data from the goverment of Germany. The formula is the following: change of demand / change of price.
