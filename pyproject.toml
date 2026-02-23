@@ -18,6 +18,7 @@ dependencies = [
     "imblearn>=0.0",
     "xgboost>=3.2.0",
     "tensorflow>=2.20.0",
+    "skforecast>=0.20.1",
 ]
 
 [build-system]
