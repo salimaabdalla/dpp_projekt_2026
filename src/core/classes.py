@@ -70,9 +70,8 @@ class FeatureEngineer(TransformerMixin, BaseEstimator):
             for lag in lags:
                 if lag > 0:
                     df[col + '_lag_by_' + str(lag)] = X.loc[:, col ].shift(lag, fill_value = X[col].tolist()[0])
-
                 else:
-                    df[col ] = X.loc[:, col ]
+                    df[ col ]= X[ col ]
 
         self.features = df.columns.values
         return df
