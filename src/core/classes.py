@@ -20,9 +20,10 @@ class DataImputation(TransformerMixin, BaseEstimator):
 
     def fit(self, X, y=None):
         help_list = list(X.select_dtypes(exclude='object').columns)
+        self.dict_num = {col: X[col].median() for col in help_list}
         self.num_cols = [x for x in help_list if x not in self.excluded_columns]
 
-        self.dict_num = {col: X[col].median() for col in self.num_cols}
+        
         return self
     
     def transform(self, X, y=None):
@@ -31,9 +32,12 @@ class DataImputation(TransformerMixin, BaseEstimator):
         
         """
         df = X.copy()
-        for col in self.num_cols:
-            if df[col].isna().sum() > 0:
-                df.loc[df[col].isna(), col] = self.dict_num[col]
+        #print('self.num)cols', self.num_cols)
+        #print('self.dict_num', self.dict_num)
+        #print('df', df.columns.values)
+        for col in self.num_cols:#if df[col].isna().sum() > 0:
+            df.loc[:, col]=df.loc[:, col].fillna(self.dict_num[col])
+                #df.loc[df[col].isna(), col] = self.dict_num[col]
 
         self.features = df.columns.values
         return df
