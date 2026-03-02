@@ -3,7 +3,7 @@ import numpy as np
 
 from math import nan
 
-def give_path_aim(path_origin):
+def give_path_aim(path_origin: str) -> str:
     """Extract the path where the file should be saved."""
     return '../data/processed/' + path_origin[12:-4] + '_processed.csv'
 
@@ -23,7 +23,7 @@ dates = ['2019-01-31', '2019-02-28', '2019-03-31', '2019-04-30', '2019-05-31', '
          '2025-07-31', '2025-08-31', '2025-09-30', '2025-10-31', '2025-11-30', '2025-12-31']
 
 
-def prepare_monatsbericht(path_origin, path_aim):
+def prepare_monatsbericht(path_origin: str, path_aim: str):
     """Preprocess files with name 'Monatsbericht' such that the index is given by the month"""
     df_1082 = pd.read_csv(path_origin, skiprows =7,
             skipfooter = 4, sep = ';'
@@ -42,7 +42,7 @@ def prepare_monatsbericht(path_origin, path_aim):
     for p in range(7):
         k = 2 + (1+(num_diff_steller +1)*12)*p
         for month in range(1,13): 
-            for i in range(1,(num_diff_steller +1)):
+            for i in range(1,num_diff_steller +1):
                 df_1082.iloc[k+i+(month-1)*(num_diff_steller +1), -1] = month
     for p in range(7):
         k = 2 + (1+(num_diff_steller +1)*12)*p
