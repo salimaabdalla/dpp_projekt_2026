@@ -7,7 +7,7 @@ def give_path_aim(path_origin: str) -> str:
     """Extract the path where the file should be saved."""
     return '../data/processed/' + path_origin[12:-4] + '_processed.csv'
 
-dates = ['2019-01-31', '2019-02-28', '2019-03-31', '2019-04-30', '2019-05-31', '2019-06-30',
+DATES = ['2019-01-31', '2019-02-28', '2019-03-31', '2019-04-30', '2019-05-31', '2019-06-30',
          '2019-07-31', '2019-08-31', '2019-09-30', '2019-10-31', '2019-11-30', '2019-12-31',
          '2020-01-31', '2020-02-29', '2020-03-31', '2020-04-30', '2020-05-31', '2020-06-30',
          '2020-07-31', '2020-08-31', '2020-09-30', '2020-10-31', '2020-11-30', '2020-12-31',
@@ -25,61 +25,61 @@ dates = ['2019-01-31', '2019-02-28', '2019-03-31', '2019-04-30', '2019-05-31', '
 
 def prepare_monatsbericht(path_origin: str, path_aim: str):
     """Preprocess files with name 'Monatsbericht' such that the index is given by the month"""
-    df_1082 = pd.read_csv(path_origin, skiprows =7,
+    df = pd.read_csv(path_origin, skiprows =7,
             skipfooter = 4, sep = ';'
             )
     #Adapt column names
-    df_1082.columns = ['Steller', 'Produkt', 'Betriebe', 'Betriebe_ep', 'Beschäftigte',
+    df.columns = ['Steller', 'Produkt', 'Betriebe', 'Betriebe_ep', 'Beschäftigte',
        'Beschäftigte_ep', 'Geleistete Arbeitsstunden', 'Geleistete Arbeitsstunden_ep',
        'Bruttolohn- und -gehaltssumme', 'Bruttolohn- und -gehaltssumme_ep', 'Umsatz', 'Umsatz_ep',
        'Inlandsumsatz', 'Inlandsumsatz_ep', 'Auslandsumsatz', 'Auslandsumsatz_ep',
        'Auslandsumsatz mit der Eurozone', 'Auslandsumsatz mit der Eurozone_ep',
        'Auslandsumsatz mit dem sonstigen Ausland', 'Auslandsumsatz mit dem sonstigen Ausland_ep']
-    different_steller = df_1082['Steller'].unique().tolist()
+    different_steller = df['Steller'].unique().tolist()
     num_diff_steller = len(different_steller)-12-7-1
     #Add date
-    df_1082['month']=0
-    for p in range(7):
-        k = 2 + (1+(num_diff_steller +1)*12)*p
+    df['month']=0
+    for year in range(7):
+        k = 2 + (1+(num_diff_steller +1)*12)*year
         for month in range(1,13): 
-            for i in range(1,num_diff_steller +1):
-                df_1082.iloc[k+i+(month-1)*(num_diff_steller +1), -1] = month
-    for p in range(7):
-        k = 2 + (1+(num_diff_steller +1)*12)*p
+            for i in range(1,num_diff_steller+1):
+                df.iloc[k+i+(month-1)*(num_diff_steller +1),-1] = month
+    for year in range(7):
+        k = 2 + (1+(num_diff_steller +1)*12)*year
         for month in range(0,12): 
-            df_1082 =  df_1082.drop(k + month * (num_diff_steller +1),axis=0)
-    df_1082['year']=0
-    for k in range(7):
+            df =  df.drop(k + month * (num_diff_steller+1),axis=0)
+    df['year']=0
+    for year in range(7):
         for i in range(1 + 12 * num_diff_steller):
-            df_1082.iloc[1 + k* (1 + 12 * num_diff_steller) + i, -1] = k + 2019
-    for k in range(7):
-        df_1082 =df_1082.drop(1 + k*(1 + 12 * (num_diff_steller+1)),axis = 0)
-    df_1082 =df_1082.drop(0,axis = 0)
-    df_1082['day']=1
-    df_1082['date']=pd.to_datetime(df_1082[['year', 'month', 'day']])
+            df.iloc[1 + year* (1 + 12 * num_diff_steller) + i, -1] = year + 2019
+    for year in range(7):
+        df =df.drop(1 + year*(1 + 12 * (num_diff_steller+1)), axis=0)
+    df =df.drop(0,axis = 0)
+    df['day']=1
+    df['date']=pd.to_datetime(df_1082[['year', 'month', 'day']])
 
-    df_1082 = df_1082.drop('month', axis = 1)
-    df_1082 = df_1082.drop('year', axis = 1)
-    df_1082 = df_1082.drop('day', axis = 1)
+    df = df.drop('month', axis=1)
+    df = df.drop('year', axis=1)
+    df = df.drop('day', axis=1)
     #Include multiplicities
-    for col in ['Betriebe', 'Beschäftigte', 'Geleistete Arbeitsstunden', 'Bruttolohn- und -gehaltssumme', 
+    for column in ['Betriebe', 'Beschäftigte', 'Geleistete Arbeitsstunden', 'Bruttolohn- und -gehaltssumme', 
             'Inlandsumsatz', 'Auslandsumsatz', 'Auslandsumsatz mit der Eurozone', 'Umsatz',
             'Auslandsumsatz mit dem sonstigen Ausland']:
-        df_1082[col]=df_1082[col].replace('...', nan)
-        df_1082[col]=df_1082[col].astype('float64')
-    df_1082['Geleistete Arbeitsstunden']=df_1082['Geleistete Arbeitsstunden'] * 1000
-    df_1082['Bruttolohn- und -gehaltssumme']=df_1082['Bruttolohn- und -gehaltssumme'] * 1000
-    df_1082['Umsatz']=df_1082['Umsatz'] * 1000
-    df_1082['Inlandsumsatz']=df_1082['Inlandsumsatz'] * 1000
-    df_1082['Auslandsumsatz']=df_1082['Auslandsumsatz'] * 1000
-    df_1082['Auslandsumsatz mit der Eurozone']=df_1082['Auslandsumsatz mit der Eurozone'] * 1000
-    df_1082['Auslandsumsatz mit dem sonstigen Ausland']=df_1082['Auslandsumsatz mit dem sonstigen Ausland'] * 1000
+        df[column]=df[column].replace('...', nan)
+        df[column]=df[column].astype('float64')
+    df['Geleistete Arbeitsstunden'] = df['Geleistete Arbeitsstunden'] * 1000
+    df['Bruttolohn- und -gehaltssumme'] = df['Bruttolohn- und -gehaltssumme'] * 1000
+    df['Umsatz'] = df['Umsatz'] * 1000
+    df['Inlandsumsatz'] = df['Inlandsumsatz'] * 1000
+    df['Auslandsumsatz'] = df['Auslandsumsatz'] * 1000
+    df['Auslandsumsatz mit der Eurozone'] = df['Auslandsumsatz mit der Eurozone'] * 1000
+    df['Auslandsumsatz mit dem sonstigen Ausland'] = df['Auslandsumsatz mit dem sonstigen Ausland'] * 1000
     #Divide df in a df for each different Steller
-    different_steller = df_1082['Steller'].unique().tolist()
+    different_steller = df['Steller'].unique().tolist()
     df_separated = []
     for steller in different_steller:
-        mask = (df_1082['Steller'] == steller)
-        df_help = df_1082.loc[mask,:]
+        mask = (df['Steller'] == steller)
+        df_help = df.loc[mask,:]
         df_help = df_help.drop('Steller', axis=1)
         df_help = df_help.drop('Produkt', axis=1)
         new_columns = []
@@ -87,11 +87,11 @@ def prepare_monatsbericht(path_origin: str, path_aim: str):
             new_columns.append(col + '_' + steller)
         new_columns.append('date')
         df_help.columns = new_columns
-        df_help['date'] = dates
+        df_help['date'] = DATES
         df_help = df_help.set_index('date')
         df_separated.append(df_help)
-    df_1082_prepared = pd.concat(df_separated, axis = 1)
-    df_1082_prepared.to_csv(path_aim)
+    df_prepared = pd.concat(df_separated, axis = 1)
+    df_prepared.to_csv(path_aim)
 
 
 def prepare_GP(path_origin, path_aim, praefix = ''):
@@ -112,18 +112,18 @@ def prepare_GP(path_origin, path_aim, praefix = ''):
     df = df.drop('Unnamed: 0', axis = 0)
     df = df.drop('Unnamed: 1', axis = 0)
     list_year = []
-    for i in range(7):
-        list_year = list_year + np.full(12,i+2019).tolist()
+    for year in range(7):
+        list_year = list_year + np.full(12,year+2019).tolist()
     df['Year'] = list_year
-    df['Day']=1
+    df['Day'] = 1
     df['Month'] = df['Month'].replace({'Januar':1, 'Februar':2, 'März': 3, 'April':4, 'Mai':5, 
                                    'Juni': 6, 'Juli': 7, 'August': 8, 'September': 9, 'Oktober': 10, 'November': 11, 'Dezember': 12})
 
-    df['date']=pd.to_datetime(df[['Year', 'Month', 'Day']])
+    df['date'] = pd.to_datetime(df[['Year', 'Month', 'Day']])
     df = df.drop('Month', axis = 1)
     df = df.drop('Year', axis = 1)
     df = df.drop('Day', axis = 1)
-    df['date']=dates
+    df['date'] = DATES
     df = df.set_index('date')
     for col in df.columns:
         df[col]=df[col].astype('float64')
@@ -138,7 +138,7 @@ def prepare_globalprice(path_origin, path_aim):
                 )
     df.columns = ['date', df.columns[1]]
     df = df.iloc[:84,:]
-    df['date']=dates
+    df['date'] = DATES
     df = df.set_index('date')
     df = df.iloc[-84:, :]
     df.to_csv(path_aim)

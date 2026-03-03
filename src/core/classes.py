@@ -65,13 +65,13 @@ class FeatureEngineer(TransformerMixin, BaseEstimator):
         
         df = pd.DataFrame.from_dict({'date':X.index})
         df = df.set_index('date')
-        for col in self.dict_lag.keys(): 
-            lags = self.dict_lag[col]
+        for column in self.dict_lag.keys(): 
+            lags = self.dict_lag[column]
             for lag in lags:
                 if lag > 0:
-                    df[col + '_lag_by_' + str(lag)] = X.loc[:, col ].shift(lag, fill_value = X[col].tolist()[0])
+                    df[column + '_lag_by_' + str(lag)] = X.loc[:,column].shift(lag, fill_value = X[column].tolist()[0])
                 else:
-                    df[ col ]= X[ col ]
+                    df[column]= X[column]
 
         self.features = df.columns.values
         return df
